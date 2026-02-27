@@ -1,0 +1,18 @@
+# entry _Z15bf16_vector_mulPK13__nv_bfloat16S1_PS_
+00400000    # pc=0000 op=ld :: ld.param.u64 	%rd1, [_Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_0];
+00800000    # pc=0001 op=ld :: ld.param.u64 	%rd2, [_Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_1];
+00C00000    # pc=0002 op=ld :: ld.param.u64 	%rd3, [_Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_2];
+110C0000    # pc=0003 op=cvta :: cvta.to.global.u64 	%rd4, %rd3;
+11480000    # pc=0004 op=cvta :: cvta.to.global.u64 	%rd5, %rd2;
+11840000    # pc=0005 op=cvta :: cvta.to.global.u64 	%rd6, %rd1;
+18400000    # pc=0006 op=mov :: mov.u32 	%r1, %tid.x;
+1DC40000    # pc=0007 op=mul :: mul.wide.s32 	%rd7, %r1, 2;
+0A19C000    # pc=0008 op=add :: add.s64 	%rd8, %rd6, %rd7;
+00A00000    # pc=0009 op=ld :: ld.global.u16 	%rs2, [%rd8];
+0A55C000    # pc=0010 op=add :: add.s64 	%rd9, %rd5, %rd7;
+00E40000    # pc=0011 op=ld :: ld.global.u16 	%rs3, [%rd9];
+18000000    # pc=0012 op=mov :: mov.b16 c, 0x8000U;
+2048C000    # pc=0013 op=fma :: fma.rn.bf16 %rs1,%rs2,%rs3,c;}
+0A91C000    # pc=0014 op=add :: add.s64 	%rd10, %rd4, %rd7;
+04680000    # pc=0015 op=st :: st.global.u16 	[%rd10], %rs1;
+24000000    # pc=0016 op=ret :: ret;

@@ -1,0 +1,34 @@
+.visible .entry _Z15bf16_vector_mulPK13__nv_bfloat16S1_PS_(
+	.param .u64 _Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_0,
+	.param .u64 _Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_1,
+	.param .u64 _Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_2
+)
+{
+	.reg .b16 	%rs<4>;
+	.reg .b32 	%r<2>;
+	.reg .b64 	%rd<11>;
+
+
+	ld.param.u64 	%rd1, [_Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_0];
+	ld.param.u64 	%rd2, [_Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_1];
+	ld.param.u64 	%rd3, [_Z15bf16_vector_mulPK13__nv_bfloat16S1_PS__param_2];
+	cvta.to.global.u64 	%rd4, %rd3;
+	cvta.to.global.u64 	%rd5, %rd2;
+	cvta.to.global.u64 	%rd6, %rd1;
+	mov.u32 	%r1, %tid.x;
+	mul.wide.s32 	%rd7, %r1, 2;
+	add.s64 	%rd8, %rd6, %rd7;
+	ld.global.u16 	%rs2, [%rd8];
+	add.s64 	%rd9, %rd5, %rd7;
+	ld.global.u16 	%rs3, [%rd9];
+	// begin inline asm
+	{.reg .b16 c;
+  mov.b16 c, 0x8000U;
+  fma.rn.bf16 %rs1,%rs2,%rs3,c;}
+
+	// end inline asm
+	add.s64 	%rd10, %rd4, %rd7;
+	st.global.u16 	[%rd10], %rs1;
+	ret;
+
+}
